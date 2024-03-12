@@ -191,11 +191,11 @@ body {
   padding-top: 1rem;
 }
 
-#sidebar nav a span {
+#sidebar nav button span {
   float: right;
   color: #eeb004;
 }
-#sidebar nav a.active span {
+#sidebar nav button.active span {
   color: inherit;
 }
 
@@ -216,11 +216,15 @@ i {
   margin: 0.25rem 0;
 }
 
-#sidebar nav a {
+#sidebar nav button {
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: space-between;
   overflow: hidden;
+  background-color: #f7f7f7;
+  border: none;
+  box-shadow: none;
 
   white-space: pre;
   padding: 0.5rem;
@@ -231,16 +235,16 @@ i {
   transition: background-color 100ms;
 }
 
-#sidebar nav a:hover {
+#sidebar nav button:hover {
   background: #e3e3e3;
 }
 
-#sidebar nav a.active {
+#sidebar nav button.active {
   background: hsl(224, 98%, 58%);
   color: white;
 }
 
-#sidebar nav a.pending {
+#sidebar nav button.pending {
   animation: progress 2s infinite ease-in-out;
   animation-delay: 200ms;
 }

@@ -102,6 +102,7 @@ export async function deleteContact(id: string) {
 [
   {
     avatar: 'https://sessionize.com/image/124e-400o400o2-wHVdAuNaxi8KJrgtN3ZKci.jpg',
+    favorite: true,
     first: 'Shruti',
     last: 'Kapoor',
     twitter: '@shrutikapoor08',

@@ -1,20 +1,30 @@
-import type { ContactRecord } from '../../../data';
-import type { FunctionComponent } from 'react';
+import Image from 'next/image';
+import Link from 'next/link';
+import DeleteContactButton from '../../../components/DeleteContactButton';
+import Favorite from '../../../components/Favourite';
+import { getContact } from '../../../lib/services/getContact';
 
-export default function Contact() {
-  const contact = {
-    avatar: 'https://placekitten.com/g/200/200',
-    favorite: true,
-    first: 'Your',
-    last: 'Name',
-    notes: 'Some notes',
-    twitter: 'your_handle',
+type PageProps = {
+  params: {
+    contactId: string;
   };
+};
+
+export default async function ContactPage({ params }: PageProps) {
+  const contact = await getContact(params.contactId);
 
   return (
     <div id="contact">
       <div>
-        <img alt={`${contact.first} ${contact.last} avatar`} key={contact.avatar} src={contact.avatar} />
+        {contact.avatar && (
+          <Image
+            width={200}
+            height={200}
+            alt={`${contact.first} ${contact.last} avatar`}
+            key={contact.avatar}
+            src={contact.avatar}
+          />
+        )}
       </div>
 
       <div>
@@ -38,33 +48,10 @@ export default function Contact() {
         {contact.notes ? <p>{contact.notes}</p> : null}
 
         <div>
-          <form action="edit">
-            <button type="submit">Edit</button>
-          </form>
-
-          <form>
-            <button type="submit">Delete</button>
-          </form>
+          <Link href={`/contacts/${contact.id}/edit`}>Edit</Link>
+          <DeleteContactButton contactId={contact.id} />
         </div>
       </div>
     </div>
   );
 }
-
-const Favorite: FunctionComponent<{
-  contact: Pick<ContactRecord, 'favorite'>;
-}> = ({ contact }) => {
-  const favorite = contact.favorite;
-
-  return (
-    <form>
-      <button
-        aria-label={favorite ? 'Remove from favorites' : 'Add to favorites'}
-        name="favorite"
-        value={favorite ? 'false' : 'true'}
-      >
-        {favorite ? '★' : '☆'}
-      </button>
-    </form>
-  );
-};

@@ -1,7 +1,10 @@
 import './globals.css';
 import { Inter } from 'next/font/google';
-import Link from 'next/link';
+import ContactList from '../components/ContactList';
+import Search from '../components/Search';
 import { getContacts } from '../data';
+import { createEmptyContact } from '../lib/actions/createEmptyContact';
+import { cn } from '../utils/style';
 import type { Metadata } from 'next';
 
 const inter = Inter({ subsets: ['latin'] });
@@ -11,51 +14,29 @@ export const metadata: Metadata = {
   title: 'Next Contacts',
 };
 
-export default async function RootLayout({ children }: { children: React.ReactNode }) {
+type Props = {
+  children: React.ReactNode;
+};
+
+export default async function RootLayout({ children }: Props) {
   const contacts = await getContacts();
 
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body className={cn(inter.className, 'group')}>
         <div id="sidebar">
           <h1>Next Contacts</h1>
           <div>
-            <form id="search-form" role="search">
-              <input aria-label="Search contacts" id="q" name="q" placeholder="Search" type="search" />
-              <div aria-hidden hidden={true} id="search-spinner" />
-            </form>
-            <form method="post">
+            <Search />
+            <form action={createEmptyContact}>
               <button type="submit">New</button>
             </form>
           </div>
-          <nav>
-            {contacts.length ? (
-              <ul>
-                {contacts.map(contact => {
-                  return (
-                    <li key={contact.id}>
-                      <Link href={`contacts/${contact.id}`}>
-                        {contact.first || contact.last ? (
-                          <>
-                            {contact.first} {contact.last}
-                          </>
-                        ) : (
-                          <i>No Name</i>
-                        )}{' '}
-                        {contact.favorite ? <span>★</span> : null}
-                      </Link>
-                    </li>
-                  );
-                })}
-              </ul>
-            ) : (
-              <p>
-                <i>No contacts</i>
-              </p>
-            )}
-          </nav>
+          <ContactList contacts={contacts} />
         </div>
-        {children}
+        <div className="group-has-[[data-pending]]:animate-pulse" id="detail">
+          {children}
+        </div>
       </body>
     </html>
   );
