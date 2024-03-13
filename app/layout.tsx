@@ -31,13 +31,15 @@ export default async function RootLayout({ children }: Props) {
             <div>
               <Search />
               <form action={createEmptyContact}>
-                <button type="submit">New</button>
+                <button className="bg-white" type="submit">
+                  New
+                </button>
               </form>
             </div>
             <ContactList contacts={contacts} />
           </Suspense>
         </div>
-        <div className="group-has-[[data-pending]]:animate-pulse" id="detail">
+        <div className="has-[[data-pending]]:animate-pulse group-has-[[data-pending]]:animate-pulse" id="detail">
           {children}
         </div>
       </body>

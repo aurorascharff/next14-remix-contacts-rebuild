@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { useTransition } from 'react';
 import { deleteContact } from '../lib/actions/deleteContact';
 
 type Props = {
@@ -8,14 +8,20 @@ type Props = {
 };
 
 export default function DeleteContactButton({ contactId }: Props) {
+  const [isPending, startTransition] = useTransition();
+
   return (
     <button
+      className="text-red-400"
+      data-pending={isPending ? '' : undefined}
       onClick={() => {
         const response = confirm('Please confirm you want to delete this record.');
         if (!response) {
           return;
         }
-        deleteContact(contactId);
+        startTransition(() => {
+          deleteContact(contactId);
+        });
       }}
     >
       Delete

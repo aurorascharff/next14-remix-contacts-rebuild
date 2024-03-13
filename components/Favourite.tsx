@@ -23,7 +23,10 @@ const Favorite: FunctionComponent<{
 
   return (
     <form action={favoriteContactById} onSubmit={onSubmit}>
-      <button aria-label={favorite ? 'Remove from favorites' : 'Add to favorites'}>
+      <button
+        className={optimisticFavorite ? 'text-yellow-400' : 'text-gray-400'}
+        aria-label={favorite ? 'Remove from favorites' : 'Add to favorites'}
+      >
         {optimisticFavorite ? '★' : '☆'}
       </button>
       <input type="hidden" name="favorite" value={favorite ? 'false' : 'true'} />

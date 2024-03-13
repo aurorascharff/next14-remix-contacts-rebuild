@@ -222,6 +222,7 @@ i {
   align-items: center;
   justify-content: space-between;
   overflow: hidden;
+  font-weight: 400;
   background-color: #f7f7f7;
   border: none;
   box-shadow: none;
