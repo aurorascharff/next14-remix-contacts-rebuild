@@ -33,7 +33,8 @@ body {
 }
 textarea,
 input,
-button {
+button,
+.nav-button {
   font-size: 1rem;
   font-family: inherit;
   border: none;
@@ -44,13 +45,15 @@ button {
   line-height: 1.5;
   margin: 0;
 }
-button {
+button,
+.nav-button {
   color: #3992ff;
   font-weight: 500;
 }
 
 textarea:hover,
 input:hover,
+.nav-button:hover,
 button:hover {
   box-shadow: 0 0px 1px hsla(0, 0%, 0%, 0.6), 0 1px 2px hsla(0, 0%, 0%, 0.2);
 }
@@ -191,11 +194,11 @@ body {
   padding-top: 1rem;
 }
 
-#sidebar nav button span {
+#sidebar nav a span {
   float: right;
   color: #eeb004;
 }
-#sidebar nav button.active span {
+#sidebar nav a.active span {
   color: inherit;
 }
 
@@ -216,7 +219,7 @@ i {
   margin: 0.25rem 0;
 }
 
-#sidebar nav button {
+#sidebar nav a {
   width: 100%;
   display: flex;
   align-items: center;
@@ -236,16 +239,16 @@ i {
   transition: background-color 100ms;
 }
 
-#sidebar nav button:hover {
+#sidebar nav a:hover {
   background: #e3e3e3;
 }
 
-#sidebar nav button.active {
+#sidebar nav a.active {
   background: hsl(224, 98%, 58%);
   color: white;
 }
 
-#sidebar nav button.pending {
+#sidebar nav a.pending {
   animation: progress 2s infinite ease-in-out;
   animation-delay: 200ms;
 }
@@ -309,6 +312,7 @@ i {
   text-decoration: underline;
 }
 
+.image,
 #contact img {
   width: 12rem;
   height: 12rem;
@@ -373,7 +377,7 @@ i {
   margin: 0 0 0 8rem;
 }
 
-#contact-form p:last-child button[type="button"] {
+#contact-form p:last-child a {
   color: inherit;
 }
 

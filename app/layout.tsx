@@ -1,9 +1,9 @@
 import './globals.css';
 import { Inter } from 'next/font/google';
 import { Suspense } from 'react';
-import Button from '../components/Button';
 import ContactList from '../components/ContactList';
 import Search from '../components/Search';
+import TransitionButton from '../components/TransitionButton';
 import { getContacts } from '../data';
 import { createEmptyContact } from '../lib/actions/createEmptyContact';
 import { cn } from '../utils/style';
@@ -31,9 +31,9 @@ export default async function RootLayout({ children }: Props) {
           <Suspense fallback="Loading...">
             <div>
               <Search />
-              <Button className="bg-white" action={createEmptyContact}>
+              <TransitionButton className="bg-white" action={createEmptyContact}>
                 New
-              </Button>
+              </TransitionButton>
             </div>
             <ContactList contacts={contacts} />
           </Suspense>

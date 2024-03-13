@@ -1,8 +1,8 @@
 'use client';
 
+import Link from 'next/link';
 import React, { useTransition } from 'react';
 import { updateContact } from '../lib/actions/updateContact';
-import NavButton from './NavButton';
 import type { ContactRecord } from '../data';
 
 type Props = {
@@ -53,7 +53,9 @@ export default function ContactForm({ contact }: Props) {
       </label>
       <p>
         <button type="submit">Save</button>
-        <NavButton>Cancel</NavButton>
+        <Link className="nav-button" href={`/contacts/${contact.id}`}>
+          Cancel
+        </Link>
       </p>
     </form>
   );

@@ -9,7 +9,7 @@ type Props = {
   onClick?: () => void;
 };
 
-export default function Button({ className, children, action, onClick }: Props) {
+export default function TransitionButton({ className, children, action, onClick }: Props) {
   const [isPending, startTransition] = useTransition();
 
   return (

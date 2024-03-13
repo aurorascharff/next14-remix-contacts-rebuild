@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { deleteContact } from '../lib/actions/deleteContact';
-import Button from './Button';
+import TransitionButton from './TransitionButton';
 
 type Props = {
   contactId: string;
@@ -12,7 +12,7 @@ export default function DeleteContactButton({ contactId }: Props) {
   const deleteContactById = deleteContact.bind(null, contactId);
 
   return (
-    <Button
+    <TransitionButton
       className="text-red-400"
       onClick={() => {
         const response = confirm('Please confirm you want to delete this record.');
@@ -24,6 +24,6 @@ export default function DeleteContactButton({ contactId }: Props) {
       action={deleteContactById}
     >
       Delete
-    </Button>
+    </TransitionButton>
   );
 }
