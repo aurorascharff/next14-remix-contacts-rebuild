@@ -9,7 +9,7 @@ type Props = {
   contact: ContactRecord;
 };
 
-export default function SaveContactForm({ contact }: Props) {
+export default function ContactForm({ contact }: Props) {
   const [isPending, startTransition] = useTransition();
   const updateContactById = updateContact.bind(null, contact.id);
 
