@@ -2,7 +2,6 @@
 
 import React, { useTransition } from 'react';
 import { updateContact } from '../lib/actions/updateContact';
-
 import NavButton from './NavButton';
 import type { ContactRecord } from '../data';
 

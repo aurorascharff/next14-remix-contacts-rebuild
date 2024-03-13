@@ -3,7 +3,7 @@
 import { matchSorter } from 'match-sorter';
 import { useSearchParams } from 'next/navigation';
 import React from 'react';
-import ContactLink from './ContactLink';
+import ContactButton from './ContactButton';
 import type { ContactRecord } from '../data';
 
 type Props = {
@@ -27,7 +27,7 @@ export default function ContactList({ contacts }: Props) {
           {filteredContacts.map(contact => {
             return (
               <li key={contact.id}>
-                <ContactLink contact={contact} />
+                <ContactButton contact={contact} />
               </li>
             );
           })}

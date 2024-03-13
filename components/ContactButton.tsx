@@ -8,9 +8,9 @@ type Props = {
   contact: ContactRecord;
 };
 
-export default function ContactLink({ contact }: Props) {
+export default function ContactButton({ contact }: Props) {
   const pathName = usePathname();
-  const isActive = pathName === `/contacts/${contact.id}`;
+  const isActive = pathName.includes(`/contacts/${contact.id}`);
   const [isPending, startTransition] = useTransition();
   const router = useRouter();
 

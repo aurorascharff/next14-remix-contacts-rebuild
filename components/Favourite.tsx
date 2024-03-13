@@ -3,11 +3,8 @@
 import React, { useOptimistic, useTransition } from 'react';
 import { favoriteContact } from '../lib/actions/favoriteContact';
 import type { ContactRecord } from '../data';
-import type { FunctionComponent } from 'react';
 
-const Favorite: FunctionComponent<{
-  contact: ContactRecord;
-}> = ({ contact }) => {
+export default function Favorite({ contact }: { contact: ContactRecord }) {
   const favorite = contact.favorite;
   const favoriteContactById = favoriteContact.bind(null, contact.id);
   const [optimisticFavorite, addOptimisticFavorite] = useOptimistic(favorite);
@@ -32,6 +29,4 @@ const Favorite: FunctionComponent<{
       <input type="hidden" name="favorite" value={favorite ? 'false' : 'true'} />
     </form>
   );
-};
-
-export default Favorite;
+}
