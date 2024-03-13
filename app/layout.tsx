@@ -1,5 +1,6 @@
 import './globals.css';
 import { Inter } from 'next/font/google';
+import { Suspense } from 'react';
 import ContactList from '../components/ContactList';
 import Search from '../components/Search';
 import { getContacts } from '../data';
@@ -26,13 +27,15 @@ export default async function RootLayout({ children }: Props) {
       <body className={cn(inter.className, 'group')}>
         <div id="sidebar">
           <h1>Next Contacts</h1>
-          <div>
-            <Search />
-            <form action={createEmptyContact}>
-              <button type="submit">New</button>
-            </form>
-          </div>
-          <ContactList contacts={contacts} />
+          <Suspense fallback="Loading...">
+            <div>
+              <Search />
+              <form action={createEmptyContact}>
+                <button type="submit">New</button>
+              </form>
+            </div>
+            <ContactList contacts={contacts} />
+          </Suspense>
         </div>
         <div className="group-has-[[data-pending]]:animate-pulse" id="detail">
           {children}
