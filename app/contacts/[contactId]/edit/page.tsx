@@ -8,7 +8,8 @@ type PageProps = {
 };
 
 export default async function EditContactPage({ params }: PageProps) {
-  const contact = await getContact(params.contactId);
+  const contactId = decodeURIComponent(params.contactId);
+  const contact = await getContact(contactId);
 
   return <ContactForm contact={contact} />;
 }
