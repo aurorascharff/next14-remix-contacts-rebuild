@@ -1,8 +1,7 @@
 'use client';
 
-import React from 'react';
+import React, { useTransition } from 'react';
 import { deleteContact } from '../lib/actions/deleteContact';
-import TransitionButton from './TransitionButton';
 
 type Props = {
   contactId: string;
@@ -10,20 +9,25 @@ type Props = {
 
 export default function DeleteContactButton({ contactId }: Props) {
   const deleteContactById = deleteContact.bind(null, contactId);
+  const [isPending, startTransition] = useTransition();
 
   return (
-    <TransitionButton
-      className="text-red-400"
-      onClick={() => {
-        const response = confirm('Please confirm you want to delete this record.');
-        if (!response) {
-          return;
-        }
-        deleteContactById();
-      }}
+    <form
+      data-pending={isPending ? '' : undefined}
       action={deleteContactById}
+      onSubmit={() => {
+        startTransition(() => {
+          const response = confirm('Please confirm you want to delete this record.');
+          if (!response) {
+            return;
+          }
+          deleteContactById();
+        });
+      }}
     >
-      Delete
-    </TransitionButton>
+      <button className="text-red-400" type="submit">
+        Delete
+      </button>
+    </form>
   );
 }

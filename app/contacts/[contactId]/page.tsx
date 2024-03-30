@@ -1,7 +1,7 @@
 import Image from 'next/image';
-import Link from 'next/link';
 import DeleteContactButton from '../../../components/DeleteContactButton';
-import Favorite from '../../../components/Favourite';
+import Favorite from '../../../components/Favorite';
+import NavLink from '../../../components/NavLink';
 import { getContact } from '../../../lib/services/getContact';
 
 type PageProps = {
@@ -48,9 +48,9 @@ export default async function ContactPage({ params }: PageProps) {
         {contact.notes ? <p>{contact.notes}</p> : null}
 
         <div>
-          <Link className="nav-button" href={`/contacts/${contact.id}/edit`}>
+          <NavLink className="nav-button" href={`/contacts/${contact.id}/edit`}>
             Edit
-          </Link>
+          </NavLink>
           <DeleteContactButton contactId={contact.id} />
         </div>
       </div>

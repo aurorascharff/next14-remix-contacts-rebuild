@@ -1,11 +1,11 @@
 import './globals.css';
 import { Inter } from 'next/font/google';
-import { Suspense } from 'react';
+
 import ContactList from '../components/ContactList';
+import NewContactButton from '../components/NewContactButton';
 import Search from '../components/Search';
-import TransitionButton from '../components/TransitionButton';
+
 import { getContacts } from '../data';
-import { createEmptyContact } from '../lib/actions/createEmptyContact';
 import { cn } from '../utils/style';
 import type { Metadata } from 'next';
 
@@ -28,15 +28,11 @@ export default async function RootLayout({ children }: Props) {
       <body className={cn(inter.className, 'group')}>
         <div id="sidebar">
           <h1>Next Contacts</h1>
-          <Suspense fallback="Loading...">
-            <div>
-              <Search />
-              <TransitionButton className="bg-white" action={createEmptyContact}>
-                New
-              </TransitionButton>
-            </div>
-            <ContactList contacts={contacts} />
-          </Suspense>
+          <div>
+            <Search />
+            <NewContactButton />
+          </div>
+          <ContactList contacts={contacts} />
         </div>
         <div className="has-[[data-pending]]:animate-pulse group-has-[[data-pending]]:animate-pulse" id="detail">
           {children}
