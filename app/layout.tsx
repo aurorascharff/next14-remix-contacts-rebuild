@@ -1,6 +1,7 @@
 import './globals.css';
 import { Inter } from 'next/font/google';
 
+import { Suspense } from 'react';
 import ContactList from '../components/ContactList';
 import NewContactButton from '../components/NewContactButton';
 import Search from '../components/Search';
@@ -29,7 +30,9 @@ export default async function RootLayout({ children }: Props) {
         <div id="sidebar">
           <h1>Next Contacts</h1>
           <div>
-            <Search />
+            <Suspense>
+              <Search />
+            </Suspense>
             <NewContactButton />
           </div>
           <ContactList contacts={contacts} />

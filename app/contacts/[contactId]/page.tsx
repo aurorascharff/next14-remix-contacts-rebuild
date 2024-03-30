@@ -11,7 +11,8 @@ type PageProps = {
 };
 
 export default async function ContactPage({ params }: PageProps) {
-  const contact = await getContact(params.contactId);
+  const contactId = decodeURIComponent(params.contactId);
+  const contact = await getContact(contactId);
 
   return (
     <div id="contact">
@@ -48,10 +49,10 @@ export default async function ContactPage({ params }: PageProps) {
         {contact.notes ? <p>{contact.notes}</p> : null}
 
         <div>
-          <NavLink className="nav-button" href={`/contacts/${contact.id}/edit`}>
+          <NavLink className="nav-button" href={`/contacts/${contactId}/edit`}>
             Edit
           </NavLink>
-          <DeleteContactButton contactId={contact.id} />
+          <DeleteContactButton contactId={contactId} />
         </div>
       </div>
     </div>
