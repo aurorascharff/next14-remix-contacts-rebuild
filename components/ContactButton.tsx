@@ -12,7 +12,7 @@ type Props = {
 
 export default function ContactButton({ contact }: Props) {
   const pathName = usePathname();
-  const isActive = pathName.includes(`/contacts/${contact.id}`);
+  const isActive = pathName.includes(`/contacts/${encodeURIComponent(contact.id)}`);
   const [isPending, startTransition] = useTransition();
   const router = useRouter();
 
