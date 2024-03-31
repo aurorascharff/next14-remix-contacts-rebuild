@@ -4,10 +4,10 @@ import Link from 'next/link';
 import React from 'react';
 import { updateContact } from '../lib/actions/updateContact';
 import { useLoading } from './LoadingState';
-import type { ContactRecord } from '../data';
+import type { Contact } from '@prisma/client';
 
 type Props = {
-  contact: ContactRecord;
+  contact: Contact;
 };
 
 export default function ContactForm({ contact }: Props) {
@@ -25,18 +25,30 @@ export default function ContactForm({ contact }: Props) {
     <form action={updateContactById} onSubmit={onSubmit} key={contact.id} id="contact-form">
       <p>
         <span>Name</span>
-        <input defaultValue={contact.first} aria-label="First name" name="first" type="text" placeholder="First" />
-        <input aria-label="Last name" defaultValue={contact.last} name="last" placeholder="Last" type="text" />
+        <input
+          defaultValue={contact.first || undefined}
+          aria-label="First name"
+          name="first"
+          type="text"
+          placeholder="First"
+        />
+        <input
+          aria-label="Last name"
+          defaultValue={contact.last || undefined}
+          name="last"
+          placeholder="Last"
+          type="text"
+        />
       </p>
       <label>
         <span>Twitter</span>
-        <input defaultValue={contact.twitter} name="twitter" placeholder="@jack" type="text" />
+        <input defaultValue={contact.twitter || undefined} name="twitter" placeholder="@jack" type="text" />
       </label>
       <label>
         <span>Avatar URL</span>
         <input
           aria-label="Avatar URL"
-          defaultValue={contact.avatar}
+          defaultValue={contact.avatar || undefined}
           name="avatar"
           placeholder="https://example.com/avatar.jpg"
           type="text"
@@ -44,7 +56,7 @@ export default function ContactForm({ contact }: Props) {
       </label>
       <label>
         <span>Notes</span>
-        <textarea defaultValue={contact.notes} name="notes" rows={6} />
+        <textarea defaultValue={contact.notes || undefined} name="notes" rows={6} />
       </label>
       <p>
         <button type="submit">Save</button>

@@ -2,12 +2,17 @@
 
 import { revalidatePath } from 'next/cache';
 import invariant from 'tiny-invariant';
-import { updateContact as updateContactFakeDb } from '../../data';
+import { prisma } from '../../db';
 
 export async function favoriteContact(contactId: string, formData: FormData) {
   invariant(contactId, 'Missing contactId param');
-  await updateContactFakeDb(contactId, {
-    favorite: formData.get('favorite') === 'true',
+  await prisma.contact.update({
+    data: {
+      favorite: formData.get('favorite') === 'true',
+    },
+    where: {
+      id: contactId,
+    },
   });
   revalidatePath('/');
 }

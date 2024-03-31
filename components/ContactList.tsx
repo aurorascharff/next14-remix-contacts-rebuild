@@ -4,10 +4,10 @@ import { matchSorter } from 'match-sorter';
 import { useSearchParams } from 'next/navigation';
 import React from 'react';
 import ContactButton from './ContactButton';
-import type { ContactRecord } from '../data';
+import type { Contact } from '@prisma/client';
 
 type Props = {
-  contacts: ContactRecord[];
+  contacts: Contact[];
 };
 
 export default function ContactList({ contacts }: Props) {

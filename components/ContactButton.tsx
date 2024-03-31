@@ -5,10 +5,10 @@ import { usePathname, useRouter } from 'next/navigation';
 import React, { useState } from 'react';
 import { cn } from '../utils/style';
 import { useLoading } from './LoadingState';
-import type { ContactRecord } from '../data';
+import type { Contact } from '@prisma/client';
 
 type Props = {
-  contact: ContactRecord;
+  contact: Contact;
 };
 
 export default function ContactButton({ contact }: Props) {

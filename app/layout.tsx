@@ -5,8 +5,8 @@ import ActionButton from '../components/ActionButton';
 import ContactList from '../components/ContactList';
 import LoadingState, { LoadingDisplay } from '../components/LoadingState';
 import Search from '../components/Search';
-import { getContacts } from '../data';
 import { createEmptyContact } from '../lib/actions/createEmptyContact';
+import { getContacts } from '../lib/services/getContacts';
 import type { Metadata } from 'next';
 
 const inter = Inter({ subsets: ['latin'] });

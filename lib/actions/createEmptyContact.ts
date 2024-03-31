@@ -2,10 +2,12 @@
 
 import { revalidatePath } from 'next/cache';
 import { redirect } from 'next/navigation';
-import { createEmptyContact as createEmptyContactFakeDb } from '../../data';
+import { prisma } from '../../db';
 
 export async function createEmptyContact() {
-  const contact = await createEmptyContactFakeDb();
+  const contact = await prisma.contact.create({
+    data: {},
+  });
   revalidatePath('/');
   redirect(`/contacts/${contact.id}/edit`);
 }
