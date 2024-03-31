@@ -1,8 +1,9 @@
 'use client';
 
 import Link from 'next/link';
-import React, { useTransition } from 'react';
+import React from 'react';
 import { updateContact } from '../lib/actions/updateContact';
+import { useLoading } from './LoadingState';
 import type { ContactRecord } from '../data';
 
 type Props = {
@@ -10,24 +11,18 @@ type Props = {
 };
 
 export default function ContactForm({ contact }: Props) {
-  const [isPending, startTransition] = useTransition();
   const updateContactById = updateContact.bind(null, contact.id);
+  const { start } = useLoading();
 
   const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    startTransition(async () => {
+    start(async () => {
       await updateContactById(new FormData(event.currentTarget));
     });
   };
 
   return (
-    <form
-      data-pending={isPending ? '' : undefined}
-      action={updateContactById}
-      onSubmit={onSubmit}
-      key={contact.id}
-      id="contact-form"
-    >
+    <form action={updateContactById} onSubmit={onSubmit} key={contact.id} id="contact-form">
       <p>
         <span>Name</span>
         <input defaultValue={contact.first} aria-label="First name" name="first" type="text" placeholder="First" />

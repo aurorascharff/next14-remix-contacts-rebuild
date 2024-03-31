@@ -2,7 +2,8 @@
 
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import React, { useTransition } from 'react';
+import React from 'react';
+import { useLoading } from './LoadingState';
 
 type Props = {
   children: React.ReactNode;
@@ -11,20 +12,19 @@ type Props = {
 };
 
 export default function NavLink({ children, href, className }: Props) {
-  const [isPending, startTransition] = useTransition();
   const router = useRouter();
+  const { start } = useLoading();
 
   return (
     <Link
       href={href}
       onClick={e => {
         e.preventDefault();
-        startTransition(() => {
+        start(() => {
           router.push(href);
         });
       }}
       className={className}
-      data-pending={isPending ? '' : undefined}
     >
       {children}
     </Link>

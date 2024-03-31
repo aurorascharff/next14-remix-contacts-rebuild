@@ -2,8 +2,9 @@
 
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
-import React, { useTransition } from 'react';
+import React, { useState } from 'react';
 import { cn } from '../utils/style';
+import { useLoading } from './LoadingState';
 import type { ContactRecord } from '../data';
 
 type Props = {
@@ -13,18 +14,20 @@ type Props = {
 export default function ContactButton({ contact }: Props) {
   const pathName = usePathname();
   const isActive = pathName.includes(`/contacts/${encodeURIComponent(contact.id)}`);
-  const [isPending, startTransition] = useTransition();
+  const { start } = useLoading();
+  const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
 
   return (
     <Link
-      data-pending={isPending ? '' : undefined}
-      className={cn(isActive && 'active', isPending && 'pending')}
+      className={cn(isActive && 'active', isLoading && 'pending')}
       href={`/contacts/${contact.id}`}
       onClick={e => {
         e.preventDefault();
-        startTransition(() => {
+        setIsLoading(true);
+        start(() => {
           router.push(`/contacts/${contact.id}`);
+          setIsLoading(false);
         });
       }}
     >

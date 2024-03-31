@@ -1,15 +1,16 @@
 'use client';
 
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
-import React, { useTransition } from 'react';
+import React from 'react';
+import { useLoading } from './LoadingState';
 
 export default function Search() {
   const router = useRouter();
   const pathName = usePathname();
   const searchParams = useSearchParams();
   const query = searchParams.get('q') || '';
-  const [isPending, startTransition] = useTransition();
-  const searching = isPending && query;
+  const { isLoading, start } = useLoading();
+  const searching = isLoading && query;
 
   return (
     <form id="search-form" role="search">
@@ -17,7 +18,7 @@ export default function Search() {
         className={searching ? 'loading' : ''}
         onChange={e => {
           const isFirstSearch = query === null;
-          startTransition(() => {
+          start(() => {
             isFirstSearch
               ? router.push(`${pathName}?q=${e.target.value}`)
               : router.replace(`${pathName}?q=${e.target.value}`);
