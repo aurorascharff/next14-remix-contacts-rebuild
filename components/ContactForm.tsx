@@ -69,7 +69,7 @@ export default function ContactForm({ contact }: Props) {
       </label>
       <p className="ml-32 flex gap-2">
         <button type="submit">Save</button>
-        <NavButton className="text-black" href={`/contacts/${contact.id}`}>
+        <NavButton color="black" href={`/contacts/${contact.id}`}>
           Cancel
         </NavButton>
       </p>

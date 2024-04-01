@@ -52,9 +52,7 @@ export default async function ContactPage({ params }: PageProps) {
         {contact.notes ? <p>{contact.notes}</p> : null}
 
         <div className="my-4 flex gap-2">
-          <NavButton className="nav-button" href={`/contacts/${contactId}/edit`}>
-            Edit
-          </NavButton>
+          <NavButton href={`/contacts/${contactId}/edit`}>Edit</NavButton>
           <DeleteContactButton contactId={contactId} />
         </div>
       </div>
