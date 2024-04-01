@@ -13,8 +13,8 @@ export default function RootPage() {
         tutorial app using Next.js 14 with Server Actions, Tailwind CSS and Prisma.
         <br />
         Check out{' '}
-        <a className="hover:text-black" href="https://nextjs.org/">
-          the docs at nextjs.org
+        <a className="hover:text-black" href="https://github.com/aurorascharff/next14-remix-contacts-rebuild">
+          the code on GitHub
         </a>
         .
       </p>
