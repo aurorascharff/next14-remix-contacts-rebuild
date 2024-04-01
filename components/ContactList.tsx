@@ -21,12 +21,12 @@ export default function ContactList({ contacts }: Props) {
     : contacts;
 
   return (
-    <nav>
+    <nav className="flex-1 overflow-auto px-8 pt-4">
       {filteredContacts.length ? (
         <ul>
           {filteredContacts.map(contact => {
             return (
-              <li key={contact.id}>
+              <li key={contact.id} className="mx-1">
                 <ContactButton contact={contact} />
               </li>
             );

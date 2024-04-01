@@ -3,6 +3,7 @@
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import React from 'react';
 import { useLoading } from '../providers/LoadingContext';
+import { cn } from '../utils/style';
 
 export default function Search() {
   const router = useRouter();
@@ -13,9 +14,9 @@ export default function Search() {
   const searching = isLoading && query;
 
   return (
-    <form id="search-form" role="search">
+    <form role="search">
       <input
-        className={searching ? 'loading' : ''}
+        className={cn(searching ? 'loading' : '', 'search-icon w-full pl-8 outline-offset-1')}
         onChange={e => {
           const isFirstSearch = query === null;
           startTransition(() => {
@@ -26,12 +27,11 @@ export default function Search() {
         }}
         defaultValue={query}
         aria-label="Search contacts"
-        id="q"
         name="q"
         placeholder="Search"
         type="search"
       />
-      <div aria-hidden hidden={!searching} id="search-spinner" />
+      <div aria-hidden hidden={!searching} className="search-spinner absolute left-10 top-7 h-4 w-4 animate-spin" />
     </form>
   );
 }

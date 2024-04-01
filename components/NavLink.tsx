@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import React from 'react';
 import { useLoading } from '../providers/LoadingContext';
+import { cn } from '../utils/style';
 
 type Props = {
   children: React.ReactNode;
@@ -24,7 +25,10 @@ export default function NavLink({ children, href, className }: Props) {
           router.push(href);
         });
       }}
-      className={className}
+      className={cn(
+        className,
+        'm-0 rounded-lg border-none bg-white px-3 py-2 font-medium no-underline shadow-sm hover:shadow-md active:shadow-xs',
+      )}
     >
       {children}
     </Link>

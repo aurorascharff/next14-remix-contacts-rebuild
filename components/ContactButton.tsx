@@ -20,7 +20,11 @@ export default function ContactButton({ contact }: Props) {
 
   return (
     <Link
-      className={cn(isActive && 'active', isLoading && 'pending')}
+      className={cn(
+        isActive ? 'active' : 'hover:bg-gray',
+        isLoading ? 'pending' : '',
+        'flex w-full items-center justify-between gap-4 overflow-hidden whitespace-pre rounded-lg p-2 text-black no-underline',
+      )}
       href={`/contacts/${contact.id}`}
       onClick={e => {
         e.preventDefault();
@@ -38,7 +42,9 @@ export default function ContactButton({ contact }: Props) {
       ) : (
         <i>No Name</i>
       )}{' '}
-      {contact.favorite ? <span>★</span> : null}
+      {contact.favorite ? (
+        <span className={cn('float-right', isActive ? 'text-white' : 'text-secondary')}>★</span>
+      ) : null}
     </Link>
   );
 }

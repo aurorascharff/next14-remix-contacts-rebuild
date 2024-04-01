@@ -15,12 +15,13 @@ export default async function ContactPage({ params }: PageProps) {
   const contact = await getContact(contactId);
 
   return (
-    <div id="contact">
+    <div className="flex max-w-[40rem]">
       <div>
         {contact.avatar && (
           <Image
-            width={200}
-            height={200}
+            width={192}
+            height={192}
+            className="mr-8 rounded-3xl bg-gray-background object-cover"
             alt={`${contact.first} ${contact.last} avatar`}
             key={contact.avatar}
             src={contact.avatar}
@@ -29,7 +30,7 @@ export default async function ContactPage({ params }: PageProps) {
       </div>
 
       <div>
-        <h1>
+        <h1 className="flex-start flex gap-4 text-3xl font-bold">
           {contact.first || contact.last ? (
             <>
               {contact.first} {contact.last}
@@ -41,14 +42,16 @@ export default async function ContactPage({ params }: PageProps) {
         </h1>
 
         {contact.twitter ? (
-          <p>
-            <a href={`https://twitter.com/${contact.twitter}`}>{contact.twitter}</a>
+          <p className="text-2xl text-primary">
+            <a className="text-primary no-underline hover:underline" href={`https://twitter.com/${contact.twitter}`}>
+              {contact.twitter}
+            </a>
           </p>
         ) : null}
 
         {contact.notes ? <p>{contact.notes}</p> : null}
 
-        <div>
+        <div className="my-4 flex gap-2">
           <NavLink className="nav-button" href={`/contacts/${contactId}/edit`}>
             Edit
           </NavLink>

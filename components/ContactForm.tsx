@@ -1,9 +1,9 @@
 'use client';
 
-import Link from 'next/link';
 import React from 'react';
 import { updateContact } from '../lib/actions/updateContact';
 import { useLoading } from '../providers/LoadingContext';
+import NavLink from './NavLink';
 import type { Contact } from '@prisma/client';
 
 type Props = {
@@ -22,10 +22,11 @@ export default function ContactForm({ contact }: Props) {
   };
 
   return (
-    <form action={updateContactById} onSubmit={onSubmit} key={contact.id} id="contact-form">
-      <p>
-        <span>Name</span>
+    <form className="flex max-w-[40rem] flex-col gap-4" action={updateContactById} onSubmit={onSubmit} key={contact.id}>
+      <p className="flex">
+        <span className="w-32">Name</span>
         <input
+          className="mr-4 grow"
           defaultValue={contact.first || undefined}
           aria-label="First name"
           name="first"
@@ -33,6 +34,7 @@ export default function ContactForm({ contact }: Props) {
           placeholder="First"
         />
         <input
+          className="grow"
           aria-label="Last name"
           defaultValue={contact.last || undefined}
           name="last"
@@ -40,13 +42,20 @@ export default function ContactForm({ contact }: Props) {
           type="text"
         />
       </p>
-      <label>
-        <span>Twitter</span>
-        <input defaultValue={contact.twitter || undefined} name="twitter" placeholder="@jack" type="text" />
-      </label>
-      <label>
-        <span>Avatar URL</span>
+      <label className="flex">
+        <span className="w-32">Twitter</span>
         <input
+          className="grow"
+          defaultValue={contact.twitter || undefined}
+          name="twitter"
+          placeholder="@jack"
+          type="text"
+        />
+      </label>
+      <label className="flex">
+        <span className="w-32">Avatar URL</span>
+        <input
+          className="grow"
           aria-label="Avatar URL"
           defaultValue={contact.avatar || undefined}
           name="avatar"
@@ -54,15 +63,15 @@ export default function ContactForm({ contact }: Props) {
           type="text"
         />
       </label>
-      <label>
-        <span>Notes</span>
-        <textarea defaultValue={contact.notes || undefined} name="notes" rows={6} />
+      <label className="flex">
+        <span className="w-32">Notes</span>
+        <textarea className="grow" defaultValue={contact.notes || undefined} name="notes" rows={6} />
       </label>
-      <p>
+      <p className="ml-32 flex gap-2">
         <button type="submit">Save</button>
-        <Link className="nav-button" href={`/contacts/${contact.id}`}>
+        <NavLink className="text-black" href={`/contacts/${contact.id}`}>
           Cancel
-        </Link>
+        </NavLink>
       </p>
     </form>
   );
