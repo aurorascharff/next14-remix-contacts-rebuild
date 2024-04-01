@@ -3,7 +3,7 @@
 import React from 'react';
 import { updateContact } from '../lib/actions/updateContact';
 import { useLoading } from '../providers/LoadingContext';
-import NavLink from './NavLink';
+import NavButton from './NavButton';
 import type { Contact } from '@prisma/client';
 
 type Props = {
@@ -69,9 +69,9 @@ export default function ContactForm({ contact }: Props) {
       </label>
       <p className="ml-32 flex gap-2">
         <button type="submit">Save</button>
-        <NavLink className="text-black" href={`/contacts/${contact.id}`}>
+        <NavButton className="text-black" href={`/contacts/${contact.id}`}>
           Cancel
-        </NavLink>
+        </NavButton>
       </p>
     </form>
   );

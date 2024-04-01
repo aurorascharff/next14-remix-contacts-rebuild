@@ -12,7 +12,7 @@ type Props = {
   href: string;
 };
 
-export default function NavLink({ children, href, className }: Props) {
+export default function NavButton({ children, href, className }: Props) {
   const router = useRouter();
   const { startTransition } = useLoading();
 
@@ -27,7 +27,7 @@ export default function NavLink({ children, href, className }: Props) {
       }}
       className={cn(
         className,
-        'm-0 rounded-lg border-none bg-white px-3 py-2 font-medium no-underline shadow-sm hover:shadow-md active:shadow-xs',
+        'm-0 rounded-lg border-none bg-white px-3 py-2 font-medium text-primary no-underline shadow-sm hover:shadow-md active:shadow-xs',
       )}
     >
       {children}

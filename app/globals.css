@@ -10,15 +10,15 @@ body {
 button,
 textarea,
 input {
-  @apply active:shadow-xs m-0 rounded-lg border-none bg-white px-3 py-2 shadow-sm hover:shadow-md;
+  @apply m-0 rounded-lg border-none bg-white px-3 py-2 shadow-sm hover:shadow-md active:shadow-xs;
 }
 
 a {
-  @apply text-primary underline;
+  @apply text-gray-text underline;
 }
 
 button {
-  @apply text-primary font-medium active:translate-y-px;
+  @apply font-medium text-primary active:translate-y-px;
 }
 
 .search-icon {
