@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import React from 'react';
-import { useLoading } from './LoadingState';
+import { useLoading } from '../providers/LoadingContext';
 
 type Props = {
   children: React.ReactNode;
@@ -13,14 +13,14 @@ type Props = {
 
 export default function NavLink({ children, href, className }: Props) {
   const router = useRouter();
-  const { start } = useLoading();
+  const { startTransition } = useLoading();
 
   return (
     <Link
       href={href}
       onClick={e => {
         e.preventDefault();
-        start(() => {
+        startTransition(() => {
           router.push(href);
         });
       }}

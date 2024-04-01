@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { useLoading } from './LoadingState';
+import { useLoading } from '../providers/LoadingContext';
 
 type Props = {
   action: () => void;
@@ -11,14 +11,14 @@ type Props = {
 };
 
 export default function ActionButton({ action, onClick, children, className }: Props) {
-  const { start } = useLoading();
+  const { startTransition } = useLoading();
 
   return (
     <form
       action={action}
       onSubmit={e => {
         e.preventDefault();
-        start(() => {
+        startTransition(() => {
           onClick ? onClick() : action();
         });
       }}

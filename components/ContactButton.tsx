@@ -3,8 +3,8 @@
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 import React, { useState } from 'react';
+import { useLoading } from '../providers/LoadingContext';
 import { cn } from '../utils/style';
-import { useLoading } from './LoadingState';
 import type { Contact } from '@prisma/client';
 
 type Props = {
@@ -14,7 +14,7 @@ type Props = {
 export default function ContactButton({ contact }: Props) {
   const pathName = usePathname();
   const isActive = pathName.includes(`/contacts/${encodeURIComponent(contact.id)}`);
-  const { start } = useLoading();
+  const { startTransition } = useLoading();
   const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
 
@@ -25,7 +25,7 @@ export default function ContactButton({ contact }: Props) {
       onClick={e => {
         e.preventDefault();
         setIsLoading(true);
-        start(() => {
+        startTransition(() => {
           router.push(`/contacts/${contact.id}`);
           setIsLoading(false);
         });

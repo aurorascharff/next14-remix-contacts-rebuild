@@ -3,10 +3,11 @@ import { Inter } from 'next/font/google';
 import { Suspense } from 'react';
 import ActionButton from '../components/ActionButton';
 import ContactList from '../components/ContactList';
-import LoadingState, { LoadingDisplay } from '../components/LoadingState';
+import { DetailView } from '../components/DetailView';
 import Search from '../components/Search';
 import { createEmptyContact } from '../lib/actions/createEmptyContact';
 import { getContacts } from '../lib/services/getContacts';
+import LoadingStateProvider from '../providers/LoadingContext';
 import type { Metadata } from 'next';
 
 const inter = Inter({ subsets: ['latin'] });
@@ -26,7 +27,7 @@ export default async function RootLayout({ children }: Props) {
   return (
     <html lang="en">
       <body className={inter.className}>
-        <LoadingState>
+        <LoadingStateProvider>
           <div id="sidebar">
             <h1>Next Contacts</h1>
             <Suspense>
@@ -39,10 +40,8 @@ export default async function RootLayout({ children }: Props) {
               <ContactList contacts={contacts} />
             </Suspense>
           </div>
-          <LoadingDisplay>
-            <div id="detail">{children}</div>
-          </LoadingDisplay>
-        </LoadingState>
+          <DetailView>{children}</DetailView>
+        </LoadingStateProvider>
       </body>
     </html>
   );

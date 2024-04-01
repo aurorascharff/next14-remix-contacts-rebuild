@@ -2,14 +2,14 @@
 
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import React from 'react';
-import { useLoading } from './LoadingState';
+import { useLoading } from '../providers/LoadingContext';
 
 export default function Search() {
   const router = useRouter();
   const pathName = usePathname();
   const searchParams = useSearchParams();
   const query = searchParams.get('q') || '';
-  const { isLoading, start } = useLoading();
+  const { isLoading, startTransition } = useLoading();
   const searching = isLoading && query;
 
   return (
@@ -18,7 +18,7 @@ export default function Search() {
         className={searching ? 'loading' : ''}
         onChange={e => {
           const isFirstSearch = query === null;
-          start(() => {
+          startTransition(() => {
             isFirstSearch
               ? router.push(`${pathName}?q=${e.target.value}`)
               : router.replace(`${pathName}?q=${e.target.value}`);

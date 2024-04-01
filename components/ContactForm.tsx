@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import React from 'react';
 import { updateContact } from '../lib/actions/updateContact';
-import { useLoading } from './LoadingState';
+import { useLoading } from '../providers/LoadingContext';
 import type { Contact } from '@prisma/client';
 
 type Props = {
@@ -12,11 +12,11 @@ type Props = {
 
 export default function ContactForm({ contact }: Props) {
   const updateContactById = updateContact.bind(null, contact.id);
-  const { start } = useLoading();
+  const { startTransition } = useLoading();
 
   const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    start(async () => {
+    startTransition(async () => {
       await updateContactById(new FormData(event.currentTarget));
     });
   };
