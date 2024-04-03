@@ -4,7 +4,7 @@ import React, { createContext, useTransition } from 'react';
 
 type LoadingContextType = {
   isLoading: boolean;
-  startTransition: (_action: () => Promise<void>) => void;
+  startTransition: (_action: () => void) => void;
 };
 
 export const LoadingContext = createContext<LoadingContextType | undefined>(undefined);
@@ -12,9 +12,9 @@ export const LoadingContext = createContext<LoadingContextType | undefined>(unde
 export default function LoadingStateProvider({ children }: { children: React.ReactNode }) {
   const [isPending, startTransition] = useTransition();
 
-  const start = async (action: () => Promise<void>) => {
-    startTransition(async () => {
-      await action();
+  const start = (action: () => void) => {
+    startTransition(() => {
+      action();
     });
   };
 
