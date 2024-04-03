@@ -1,11 +1,10 @@
 'use client';
-/* eslint-disable @typescript-eslint/no-explicit-any */
 
 import React, { createContext, useTransition } from 'react';
 
 type LoadingContextType = {
   isLoading: boolean;
-  startTransition: (_action: any) => void;
+  startTransition: (_action: () => Promise<void>) => void;
 };
 
 export const LoadingContext = createContext<LoadingContextType | undefined>(undefined);
@@ -13,9 +12,9 @@ export const LoadingContext = createContext<LoadingContextType | undefined>(unde
 export default function LoadingStateProvider({ children }: { children: React.ReactNode }) {
   const [isPending, startTransition] = useTransition();
 
-  const start = async (action: any) => {
+  const start = async (action: () => Promise<void>) => {
     startTransition(async () => {
-      action();
+      await action();
     });
   };
 
