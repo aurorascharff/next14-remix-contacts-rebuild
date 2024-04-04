@@ -1,8 +1,7 @@
 'use client';
 
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
-import React from 'react';
-import { useLoading } from '../providers/LoadingContext';
+import React, { useTransition } from 'react';
 import { cn } from '../utils/style';
 
 export default function Search() {
@@ -10,8 +9,8 @@ export default function Search() {
   const pathName = usePathname();
   const searchParams = useSearchParams();
   const query = searchParams.get('q') || '';
-  const { isLoading, startTransition } = useLoading();
-  const searching = isLoading && query;
+  const [isPending, startTransition] = useTransition();
+  const searching = isPending && query;
 
   return (
     <form role="search">
