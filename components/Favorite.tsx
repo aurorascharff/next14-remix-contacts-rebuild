@@ -22,6 +22,7 @@ export default function Favorite({ contact }: { contact: Contact }) {
   return (
     <form action={favoriteContactById} onSubmit={onSubmit}>
       <button
+        type="submit"
         className={cn(
           optimisticFavorite ? 'text-secondary' : 'text-gray-400',
           'm-0 p-0 text-2xl shadow-none hover:text-secondary hover:shadow-none',
