@@ -6,11 +6,7 @@ import { useLoading } from '../providers/LoadingContext';
 import NavButton from './NavButton';
 import type { Contact } from '@prisma/client';
 
-type Props = {
-  contact: Contact;
-};
-
-export default function ContactForm({ contact }: Props) {
+export default function ContactForm({ contact }: { contact: Contact }) {
   const updateContactById = updateContact.bind(null, contact.id);
   const { startTransition } = useLoading();
 

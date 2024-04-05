@@ -7,11 +7,7 @@ import { useLoading } from '../providers/LoadingContext';
 import { cn } from '../utils/style';
 import type { Contact } from '@prisma/client';
 
-type Props = {
-  contact: Contact;
-};
-
-export default function ContactButton({ contact }: Props) {
+export default function ContactButton({ contact }: { contact: Contact }) {
   const pathName = usePathname();
   const isActive = pathName.includes(`/contacts/${encodeURIComponent(contact.id)}`);
   const { startTransition } = useLoading();

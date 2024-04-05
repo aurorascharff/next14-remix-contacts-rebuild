@@ -6,11 +6,7 @@ import React from 'react';
 import ContactButton from './ContactButton';
 import type { Contact } from '@prisma/client';
 
-type Props = {
-  contacts: Contact[];
-};
-
-export default function ContactList({ contacts }: Props) {
+export default function ContactList({ contacts }: { contacts: Contact[] }) {
   const searchParams = useSearchParams();
   const query = searchParams.get('q') || '';
 

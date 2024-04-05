@@ -20,11 +20,7 @@ export const metadata: Metadata = {
   title: 'Next Contacts',
 };
 
-type Props = {
-  children: React.ReactNode;
-};
-
-export default async function RootLayout({ children }: Props) {
+export default async function RootLayout({ children }: { children: React.ReactNode }) {
   const contacts = await getContacts();
 
   return (
