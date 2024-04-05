@@ -13,6 +13,8 @@ import LoadingStateProvider from '../providers/LoadingContext';
 import Logo from '../public/next-js.svg';
 import type { Metadata } from 'next';
 
+export const dynamic = 'force-dynamic';
+
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
