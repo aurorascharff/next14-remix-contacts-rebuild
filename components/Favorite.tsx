@@ -9,11 +9,12 @@ export default function Favorite({ contact }: { contact: Contact }) {
   const favorite = contact.favorite;
   const favoriteContactById = favoriteContact.bind(null, contact.id, favorite);
   const [optimisticFavorite, addOptimisticFavorite] = useOptimistic(favorite);
-  const [, startTransition] = useTransition();
+  const [isPending, startTransition] = useTransition();
 
   const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     startTransition(async () => {
+      if (isPending) return;
       addOptimisticFavorite(!favorite);
       await favoriteContactById();
     });
