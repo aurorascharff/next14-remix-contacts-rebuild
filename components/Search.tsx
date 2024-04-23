@@ -15,7 +15,7 @@ export default function Search() {
   return (
     <form role="search">
       <input
-        className={cn(searching ? 'loading' : '', 'search-icon w-full pl-8 outline-offset-1')}
+        className={cn(!searching && 'search-icon', 'w-full pl-8 outline-offset-1')}
         onChange={e => {
           const isFirstSearch = query === null;
           startTransition(() => {
