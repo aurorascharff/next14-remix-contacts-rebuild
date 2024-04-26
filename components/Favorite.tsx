@@ -6,16 +6,14 @@ import { cn } from '../utils/style';
 import type { Contact } from '@prisma/client';
 
 export default function Favorite({ contact }: { contact: Contact }) {
-  const favorite = contact.favorite;
-  const [optimisticFavorite, addOptimisticFavorite] = useOptimistic(favorite);
-  const favoriteContactById = favoriteContact.bind(null, contact.id, favorite);
-  const [isPending, startTransition] = useTransition();
+  const favoriteContactById = favoriteContact.bind(null, contact.id, contact.favorite);
+  const [optimisticFavorite, addOptimisticFavorite] = useOptimistic(contact.favorite);
+  const [, startTransition] = useTransition();
 
-  const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
+  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
     startTransition(async () => {
       addOptimisticFavorite(!optimisticFavorite);
-      if (isPending) return;
       await favoriteContactById();
     });
   };
@@ -28,7 +26,7 @@ export default function Favorite({ contact }: { contact: Contact }) {
           optimisticFavorite ? 'text-secondary' : 'text-gray-400',
           'm-0 p-0 text-2xl shadow-none hover:text-secondary hover:shadow-none',
         )}
-        aria-label={favorite ? 'Remove from favorites' : 'Add to favorites'}
+        aria-label={optimisticFavorite ? 'Remove from favorites' : 'Add to favorites'}
       >
         {optimisticFavorite ? '★' : '☆'}
       </button>
