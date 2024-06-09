@@ -18,7 +18,7 @@ export default function ContactForm({ contact }: { contact: Contact }) {
   };
 
   return (
-    <form className="flex max-w-[40rem] flex-col gap-4" action={updateContactById} onSubmit={onSubmit} key={contact.id}>
+    <form className="flex max-w-[40rem] flex-col gap-4" action={updateContactById} onSubmit={onSubmit}>
       <p className="flex">
         <span className="w-32">Name</span>
         <input
