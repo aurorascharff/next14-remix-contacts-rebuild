@@ -1,7 +1,7 @@
 'use client';
 
-import { useLoading } from '../providers/LoadingContext';
-import { cn } from '../utils/style';
+import { useLoading } from '@/providers/LoadingContext';
+import { cn } from '@/utils/style';
 
 export const Details = ({ children }: { children: React.ReactNode }) => {
   const { isLoading } = useLoading();

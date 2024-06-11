@@ -3,8 +3,8 @@
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 import React, { useState } from 'react';
-import { useLoading } from '../providers/LoadingContext';
-import { cn } from '../utils/style';
+import { useLoading } from '@/providers/LoadingContext';
+import { cn } from '@/utils/style';
 import type { Contact } from '@prisma/client';
 
 export default function ContactButton({ contact }: { contact: Contact }) {

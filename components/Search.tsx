@@ -2,7 +2,7 @@
 
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import React, { useTransition } from 'react';
-import { cn } from '../utils/style';
+import { cn } from '@/utils/style';
 
 export default function Search() {
   const router = useRouter();

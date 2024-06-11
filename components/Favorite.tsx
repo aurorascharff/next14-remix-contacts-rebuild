@@ -1,8 +1,8 @@
 'use client';
 
 import React, { useOptimistic, useTransition } from 'react';
-import { favoriteContact } from '../lib/actions/favoriteContact';
-import { cn } from '../utils/style';
+import { favoriteContact } from '@/lib/actions/favoriteContact';
+import { cn } from '@/utils/style';
 import type { Contact } from '@prisma/client';
 
 export default function Favorite({ contact }: { contact: Contact }) {

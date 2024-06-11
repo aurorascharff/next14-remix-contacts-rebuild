@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { useLoading } from '../providers/LoadingContext';
+import { useLoading } from '@/providers/LoadingContext';
 
 type Props = {
   action: () => void;

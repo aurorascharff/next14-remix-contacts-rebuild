@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { deleteContact } from '../lib/actions/deleteContact';
+import { deleteContact } from '@/lib/actions/deleteContact';
 import ActionButton from './ActionButton';
 
 export default function DeleteContactButton({ contactId }: { contactId: string }) {

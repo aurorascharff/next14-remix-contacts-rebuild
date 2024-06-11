@@ -1,8 +1,8 @@
 'use client';
 
 import React from 'react';
-import { updateContact } from '../lib/actions/updateContact';
-import { useLoading } from '../providers/LoadingContext';
+import { updateContact } from '@/lib/actions/updateContact';
+import { useLoading } from '@/providers/LoadingContext';
 import NavButton from './NavButton';
 import type { Contact } from '@prisma/client';
 

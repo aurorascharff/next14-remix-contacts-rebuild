@@ -1,8 +1,8 @@
 import Image from 'next/image';
+import { getContact } from '@/lib/services/getContact';
 import DeleteContactButton from '../../../components/DeleteContactButton';
 import Favorite from '../../../components/Favorite';
 import NavButton from '../../../components/NavButton';
-import { getContact } from '../../../lib/services/getContact';
 
 type PageProps = {
   params: {
