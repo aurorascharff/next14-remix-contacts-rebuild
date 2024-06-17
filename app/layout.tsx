@@ -18,7 +18,7 @@ export const dynamic = 'force-dynamic';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  description: 'Next 14 rebuild of Remix Contacts',
+  description: 'Next.js 14 rebuild of Remix Contacts',
   title: 'Next Contacts',
 };
 

@@ -1,8 +1,8 @@
-# Next 14 "Remix Contacts" Rebuild
+# Next.js 14 "Remix Contacts" Rebuild
 
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-It is a rebuild of [Remix Contacts](https://remix.run/docs/en/main/start/tutorial) using Next 14 with Server Actions, Tailwind CSS, and Prisma.
+It is a rebuild of [Remix Contacts](https://remix.run/docs/en/main/start/tutorial) using Next.js 14 with Server Actions, Tailwind CSS, and Prisma.
 
 First, run the development server:
 
