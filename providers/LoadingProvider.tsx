@@ -9,7 +9,7 @@ type LoadingContextType = {
 
 export const LoadingContext = createContext<LoadingContextType | undefined>(undefined);
 
-export default function LoadingStateProvider({ children }: { children: React.ReactNode }) {
+export default function LoadingProvider({ children }: { children: React.ReactNode }) {
   const [isPending, startTransition] = useTransition();
 
   const start = (action: () => void) => {
@@ -28,7 +28,7 @@ export default function LoadingStateProvider({ children }: { children: React.Rea
 export function useLoading() {
   const context = React.useContext(LoadingContext);
   if (context === undefined) {
-    throw new Error('useLoading must be used within a LoadingStateProvider');
+    throw new Error('useLoading must be used within a LoadingProvider');
   }
   return context;
 }

@@ -9,7 +9,7 @@ import { Details } from '@/components/Details';
 import Search from '@/components/Search';
 import { createEmptyContact } from '@/lib/actions/createEmptyContact';
 import { getContacts } from '@/lib/services/getContacts';
-import LoadingStateProvider from '@/providers/LoadingContext';
+import LoadingProvider from '@/providers/LoadingProvider';
 import Logo from '@/public/next-js.svg';
 import type { Metadata } from 'next';
 
@@ -28,7 +28,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
   return (
     <html lang="en">
       <body className={inter.className}>
-        <LoadingStateProvider>
+        <LoadingProvider>
           <div className="flex w-[22rem] flex-col border-r border-gray bg-gray-background">
             <Suspense>
               <div className="flex items-center gap-2 border-b border-gray px-8 py-4">
@@ -47,7 +47,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
             </div>
           </div>
           <Details>{children}</Details>
-        </LoadingStateProvider>
+        </LoadingProvider>
       </body>
     </html>
   );
