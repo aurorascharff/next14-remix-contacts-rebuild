@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import React from 'react';
-import { useLoading } from '@/providers/LoadingContext';
+import { useLoading } from '@/providers/LoadingProvider';
 import { cn } from '@/utils/style';
 
 type Props = {
