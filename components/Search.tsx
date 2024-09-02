@@ -1,12 +1,11 @@
 'use client';
 
-import { usePathname, useRouter, useSearchParams } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import React, { useTransition } from 'react';
 import { cn } from '@/utils/style';
 
 export default function Search() {
   const router = useRouter();
-  const pathName = usePathname();
   const searchParams = useSearchParams();
   const query = searchParams.get('q') || '';
   const [searching, startTransition] = useTransition();
@@ -18,9 +17,7 @@ export default function Search() {
         onChange={e => {
           startTransition(() => {
             const isFirstSearch = query === null;
-            isFirstSearch
-              ? router.push(`${pathName}?q=${e.target.value}`)
-              : router.replace(`${pathName}?q=${e.target.value}`);
+            isFirstSearch ? router.push(`?q=${e.target.value}`) : router.replace(`?q=${e.target.value}`);
           });
         }}
         defaultValue={query}
